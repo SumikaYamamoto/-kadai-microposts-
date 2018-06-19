@@ -35,7 +35,7 @@ class NanopostsController extends Controller
             'content' => 'required|max:191',
         ]);
 
-        $request->user()->microposts()->create([
+        $request->user()->nanoposts()->create([
             'content' => $request->content,
         ]);
 
@@ -44,10 +44,10 @@ class NanopostsController extends Controller
     
      public function destroy($id)
     {
-        $micropost = \App\Micropost::find($id);
+        $nanopost = \App\Nanopost::find($id);
 
-        if (\Auth::id() === $micropost->user_id) {
-            $micropost->delete();
+        if (\Auth::id() === $nanopost->user_id) {
+            $nanopost->delete();
         }
 
         return redirect('/');
